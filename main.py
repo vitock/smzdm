@@ -7,7 +7,7 @@ import requests,os
 from sys import argv
 
 import config
-from utils.serverchan_push import push_to_wechat
+from utils.tgbot_push import tgbot_push
 
 class SMZDM_Bot(object):
     def __init__(self):
@@ -34,7 +34,7 @@ class SMZDM_Bot(object):
         cookie 为浏览器复制来的字符串
         :param cookie: 登录过的社区网站 cookie
         """
-        self.session.headers['Cookie'] = cookies    
+        self.session.headers['Cookie'] = cookies  
 
     def checkin(self):
         """
@@ -56,11 +56,10 @@ if __name__ == '__main__':
     sb.load_cookie_str(cookies)
     res = sb.checkin()
     print(res)
-    SERVERCHAN_SECRETKEY = os.environ["SERVERCHAN_SECRETKEY"]
-    print('sc_key: ', SERVERCHAN_SECRETKEY)
-    if isinstance(SERVERCHAN_SECRETKEY,str) and len(SERVERCHAN_SECRETKEY)>0:
+    TGBOT = os.environ["TGBOTAPI"]
+    if isinstance(TGBOT,str) and len(TGBOT)>0:
         print('检测到 SCKEY， 准备推送')
-        push_to_wechat(text = '什么值得买每日签到',
+        tgbot_push(text = '什么值得买每日签到',
                         desp = str(res),
-                        secretKey = SERVERCHAN_SECRETKEY)
+                        secretKeyAPI = TGBOT)
     print('代码完毕')
