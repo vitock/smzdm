@@ -14,7 +14,6 @@ def tgbot_push(text,desp,secretKeyAPI):
     """
     msg = quote(text) + quote(desp)
     url = f'{secretKeyAPI}&text={msg}'
-    print(url);
     session = requests.Session()
     resp = session.get(url)
     return resp.json()
