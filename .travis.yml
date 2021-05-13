@@ -1,0 +1,17 @@
+language: python
+git:
+  depth: 3
+branches:
+  only:
+  - master
+python:
+- '3.7'
+install:
+- pip install -r requirements.txt
+script:
+- python main.py
+env:
+  matrix:
+  - UUU=kkk`
+  global:
+    secure: MnfY5rbIByJWlvDyG4A0fJxDPqsVIJKpU/bsEBpnuYSVhhTNYe4rF8JX92xQOqC+Ls+NPIxzY5iQPAzHP02SamYsVDGb1ZGbPYwN5DRRUV7HQ2rZmHqrXR15F+byw2MG9bFYOXOmHF/Jxk7aLatwkuM5CUIAqvkL60ESnv/BOWa6qBTffx61tbAvdwYja3v2VDRk1tJBvZ0vig660nRy0bp5GBovGZ5Fhccuomw5vNQ0jfaNvoQUDvIuUOqcp+HxzhQVGDb30NayCN7UMzxA79y6N/XcZ6mPQN46Cny+V8gLLfSmi16jyCj9O+K/Vy45x6JGFRVuRN2XraxLARLiSW/0ohI+o+0hMrQd2XNnjt/6yzghI3kiufM5Y1JMs/YZwiELLb6SF6814vtmPALJCA8M4OMelRTl6wDirEdYWPXYZ6wWtHfOuYr1tvgrH6I/Eu/JDvn9F3XZO+q7vvJyWaSRRbrKq52xp+guPR0NwtCnXks2/8GnrFtLJAw8y7wE20/1wgM9mkD3wiwY63JUOkhHkK9SbChojTpBLBvKsCLv0BOfS9LY75EelCKk2eNOD3Fn26PulJRdjaaPMs4qyBUts2lIs+6xgLYame6WyqomRwjEg3t8BDLkxPG3RWP+VnXGpmvN/CjbjuH4LBHr92VOzcpC0PN+aHIqt2OXX7M=

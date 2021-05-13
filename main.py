@@ -4,8 +4,10 @@
 @author : stark
 """
 import requests,os
+import sys
 from sys import argv
-
+from aes import AEScoder
+import os
 import config
 from utils.tgbot_push import tgbot_push
 
@@ -52,7 +54,15 @@ class SMZDM_Bot(object):
 if __name__ == '__main__':
     sb = SMZDM_Bot()
     # sb.load_cookie_str(config.TEST_COOKIE)
-    cookies = os.environ["COOKIES"]
+    
+    if "cookies" in  os.environ:
+        cookies =  os.environ["COOKIES"]
+    else:
+        COOKIEENCKEY = os.environ["COOKIEENCKEY"]
+        aes = AEScoder(COOKIEENCKEY);
+        enccookie = open("/".join([sys.path[0], "cookie.enc"])).read();
+        cookies = aes.decrypt(enccookie);
+
     sb.load_cookie_str(cookies)
     res = sb.checkin()
     print(res)
