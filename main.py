@@ -5,6 +5,7 @@
 """
 import requests,os
 import sys
+import json
 from sys import argv
 from aes import AEScoder
 import os
@@ -54,19 +55,27 @@ class SMZDM_Bot(object):
 if __name__ == '__main__':
     sb = SMZDM_Bot()
     # sb.load_cookie_str(config.TEST_COOKIE)
-    
+    CFG = {};
     if "cookies" in  os.environ:
         cookies =  os.environ["COOKIES"]
     else:
         COOKIEENCKEY = os.environ["COOKIEENCKEY"]
         aes = AEScoder(COOKIEENCKEY);
-        enccookie = open("/".join([sys.path[0], "cookie.enc"])).read();
-        cookies = aes.decrypt(enccookie);
+        enccookie = open("/".join([sys.path[0], "config.json.enc"])).read();
+        cfgstring = aes.decrypt(enccookie);
+        CFG = json.loads(cfgstring);
+        cookies = CFG['COOKIES']
+
+        print(CFG)
 
     sb.load_cookie_str(cookies)
     res = sb.checkin()
     print(res)
-    TGBOT = os.environ["TGBOTAPI"]
+    if 'TGBOG' in os.environ:
+        TGBOT = os.environ["TGBOTAPI"]
+    else:
+        TGBOT = CFG['TGBOTAPI']
+    
     if isinstance(TGBOT,str) and len(TGBOT)>0:
         print('检测到 SCKEY， 准备推送')
         tgbot_push(text = '什么值得买每日签到',
