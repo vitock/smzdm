@@ -66,7 +66,6 @@ if __name__ == '__main__':
         CFG = json.loads(cfgstring);
         cookies = CFG['COOKIES']
 
-        print(CFG)
 
     sb.load_cookie_str(cookies)
     res = sb.checkin()
